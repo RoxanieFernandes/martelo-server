@@ -4,6 +4,9 @@ import express from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
 
+import connect from './db/index.js'
+connect()
+
 const app = express()
 
 app.use(cors())
