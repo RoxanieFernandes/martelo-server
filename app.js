@@ -3,6 +3,7 @@ dotenv.config()
 import express from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
+import handleError from './error-handling/index.js'
 
 import connect from './db/index.js'
 connect()
@@ -16,5 +17,6 @@ app.use(morgan('dev'))
 app.use(express.json())
 
 // app.get('/', (req,res) => res.send ('Está funcionando'))
+handleError (app)
 
 export default app
