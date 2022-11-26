@@ -11,7 +11,7 @@ const userSchema = new Schema(
       type: String,
       trim: true,
     },
-    adress: {
+    address: {
       type: String,
       trim: true,
       required: true,
@@ -31,3 +31,5 @@ const userSchema = new Schema(
   },
   { timestamps: true }
 );
+
+export default model('User', userSchema)
