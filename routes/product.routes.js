@@ -35,12 +35,26 @@ router.put("/product/:id", async (req, res, next) => {
   const userId = req.user.id;
   const { productName, image, price, description } = req.body;
   try {
-    const updateProduct = await Product.findOneAndUpdate({ _id: id, user: userId }, req.body,
+    const updateProduct = await Product.findOneAndUpdate(
+      { _id: id, user: userId },
+      req.body,
       {
         new: true,
       }
     );
     res.status(200).json(updateProduct);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.delete("/product/:id", async (req, res, next) => {
+  const { id } = req.params;
+  const userId = req.user.id;
+  try {
+    const product = await Product.findById(id);
+    product.delete();
+    res.status(202).json("Product was deleted");
   } catch (error) {
     next(error);
   }
