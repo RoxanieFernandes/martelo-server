@@ -20,4 +20,16 @@ router.post('/product', async (req, res, next) => {
         next(error)
     }
 } )
+
+router.get('/product', async (req, res, next) => {
+    try{
+        const userId = req.user.id
+        const allProduct = await Product.find({user: userId});
+        res.status(200).json(allProduct)
+    } catch (error) {
+        res.status(500).json({error: error.message})
+    }
+});
+
+
 export default router
