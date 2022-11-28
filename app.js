@@ -6,6 +6,7 @@ import morgan from "morgan";
 import handleError from "./error-handling/index.js";
 import authRoutes from "./routes/auth.routes.js";
 import authMiddleWare from "./middleware/auth.middleware.js";
+import productRoutes from "./routes/product.routes.js";
 
 import connect from "./db/index.js";
 connect();
@@ -22,9 +23,11 @@ app.use("/", authRoutes);
 
 app.use(authMiddleWare);
 
-app.get("/test", (req, res) => {
-  res.status(200).json({ message: "Está funcionando" });
-});
+app.use("/", productRoutes)
+
+// app.get("/test", (req, res) => {
+//   res.status(200).json({ message: "Está funcionando" });
+// });
 
 handleError(app);
 

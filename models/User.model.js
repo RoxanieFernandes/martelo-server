@@ -5,7 +5,7 @@ const userSchema = new Schema(
     name: {
       type: String,
       trim: true,
-      requided: [true, "Username is required"],
+      requided: [true, "Name is required"],
     },
     socialName: {
       type: String,
