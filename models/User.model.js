@@ -28,8 +28,9 @@ const userSchema = new Schema(
       type: String,
       required: [true, "Password is required"],
     },
+    products: [{ type: Schema.Types.ObjectId, ref: "Product" }],
   },
   { timestamps: true }
 );
 
-export default model('User', userSchema)
+export default model("User", userSchema);
