@@ -15,7 +15,7 @@ router.post("/product", async (req, res, next) => {
       description,
       owner: req.user.id,
     });
-    await User.findOneAndUpdate (newProduct.owner, {$push: {products: newProduct._id}})
+    await User.findByIdAndUpdate (newProduct.owner, {$push: {products: newProduct._id}})
     res.status(200).json(newProduct);
   } catch (error) {
     next(error);
