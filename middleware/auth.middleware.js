@@ -1,20 +1,17 @@
 import jwt from "jsonwebtoken";
-
-const auth = (req, res, next) => {
-  const { authorization } = req.headers;
-
-  if (!authorization) {
-    const error = new Error("Request without token");
-    throw error;
-  }
-  const [, token] = authorization.split(" ")[1];
-  try {
-    const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = { ...decodedToken };
-    next();
-  } catch (error) {
-    res.status(401).json({ message: error.message });
-  }
-};
-
-export default auth;
+const auth = (req,res,next)=>{
+    const token = req.get('Authorization')
+    if(!token){
+      res.status(401).json({message:'Request without token'})
+      return
+    }
+    const tokenWithoutBearer = token.split(' ')[1]
+    try {
+        const decodedToken = jwt.verify(tokenWithoutBearer,process.env.JWT_SECRET)
+        req.user = {...decodedToken}
+        next()
+    } catch (error) {
+        res.status(401).json({message: error.message})
+    } 
+}
+export default auth
