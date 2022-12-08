@@ -7,14 +7,13 @@ const auth = (req, res, next) => {
       const error = new Error("Request without token");
       throw error;
     }
-    const [, token] = authorization.split(' ');
+    const [, token] = authorization.split(' ')[1];
 
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
     req.user = { ...decodedToken };
     next();
   } catch (error) {
-    error.status = 401;
-    next(error);
+    res.status(401).json({message: error.message})
   }
 };
 

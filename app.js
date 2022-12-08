@@ -5,7 +5,7 @@ import cors from "cors";
 import morgan from "morgan";
 import handleError from "./error-handling/index.js";
 import authRoutes from "./routes/auth.routes.js";
-import authMiddleWare from "./middleware/auth.middleware.js";
+import auth from "./middleware/auth.middleware.js";
 import productRoutes from "./routes/product.routes.js";
 import userRoutes from "./routes/user.routes.js"
 
@@ -22,7 +22,7 @@ app.use(express.json());
 
 app.use("/", authRoutes);
 
-app.use(authMiddleWare);
+app.use(auth);
 
 app.use("/", productRoutes)
 
