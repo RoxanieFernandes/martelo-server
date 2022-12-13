@@ -86,25 +86,25 @@ router.put(
   }
 );
 
-// router.post("/product/:id/rent", async (req, res, next) => {
-//   const { product, inicialDate, deliveryDate, price } = req.body;
+router.post("/product/:id/rent", async (req, res, next) => {
+  const { product, inicialDate, deliveryDate, price } = req.body;
 
-//   try {
-//     const newRent = await Rent.create({
-//       owner: req.user.id,
-//       renter: req.user.id,
-//       product,
-//       inicialDate,
-//       deliveryDate,
-//       price,
-//     });
-//     await User.findByIdAndUpdate(newRent.owner.renter, {
-//       $push: { products: newRent._id },
-//     });
-//     res.status(200).json(newRent);
-//   } catch (error) {
-//     next(error);
-//   }
-// });
+  try {
+    const newRent = await Rent.create({
+      owner: req.user.id,
+      renter: req.user.id,
+      product,
+      inicialDate,
+      deliveryDate,
+      price,
+    });
+    await User.findByIdAndUpdate(newRent.owner.renter, {
+      $push: { products: newRent._id },
+    });
+    res.status(200).json(newRent);
+  } catch (error) {
+    next(error);
+  }
+});
 
 export default router;
