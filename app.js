@@ -7,7 +7,8 @@ import handleError from "./error-handling/index.js";
 import authRoutes from "./routes/auth.routes.js";
 import authMiddleWare from "./middleware/auth.middleware.js";
 import productRoutes from "./routes/product.routes.js";
-import userRoutes from "./routes/user.routes.js"
+import userRoutes from "./routes/user.routes.js";
+import rentRoutes from "./routes/rent.routes.js";
 
 import connect from "./db/index.js";
 connect();
@@ -24,9 +25,11 @@ app.use("/", authRoutes);
 
 app.use(authMiddleWare);
 
-app.use("/", productRoutes)
+app.use("/", productRoutes);
 
-app.use("/", userRoutes)
+app.use("/", userRoutes);
+
+app.use("/", rentRoutes);
 
 handleError(app);
 

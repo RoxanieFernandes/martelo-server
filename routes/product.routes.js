@@ -42,7 +42,7 @@ router.put("/product/:id", async (req, res, next) => {
   try {
     const updateProduct = await Product.findOneAndUpdate(
       { _id: id, user: userId },
-      req.body,
+      req.body, 
       {
         new: true,
       }
@@ -85,5 +85,26 @@ router.put(
     }
   }
 );
+
+// router.post("/product/:id/rent", async (req, res, next) => {
+//   const { product, inicialDate, deliveryDate, price } = req.body;
+
+//   try {
+//     const newRent = await Rent.create({
+//       owner: req.user.id,
+//       renter: req.user.id,
+//       product,
+//       inicialDate,
+//       deliveryDate,
+//       price,
+//     });
+//     await User.findByIdAndUpdate(newRent.owner.renter, {
+//       $push: { products: newRent._id },
+//     });
+//     res.status(200).json(newRent);
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
 export default router;

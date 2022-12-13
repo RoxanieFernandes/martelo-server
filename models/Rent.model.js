@@ -3,7 +3,7 @@ import { Schema, model } from "mongoose";
 const rentSchema = new Schema(
   {
     owner: { type: Schema.Types.ObjectId, ref: "User" },
-    owner: { type: Schema.Types.ObjectId, ref: "User" },
+    renter: { type: Schema.Types.ObjectId, ref: "User" },
     product: { type: Schema.Types.ObjectId, ref: "Product" },
     inicialDate: {
       type: Date,
