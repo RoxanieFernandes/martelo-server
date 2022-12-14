@@ -5,7 +5,9 @@ import User from "../models/User.model.js";
 
 const router = Router();
 
-router.post("/product", async (req, res, next) => {
+router.post("/product",
+uploadCloud.single("image"),
+ async (req, res, next) => {
   const { productName, image, price, description } = req.body;
 
   try {
