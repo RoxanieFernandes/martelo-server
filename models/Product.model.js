@@ -9,7 +9,7 @@ const productSchema = new Schema(
     },
     image: String,
     price: Number,
-    description: { type: String, maxLength: 500 },
+    description: { type: String, maxLength: 55 },
     owner: { type: Schema.Types.ObjectId, ref: "User" },
   },
 
