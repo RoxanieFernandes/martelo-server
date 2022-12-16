@@ -9,12 +9,12 @@ const router = Router();
 router.post("/product",
 uploadCloud.single("image"),
  async (req, res, next) => {
-  const { productName, price, description } = req.body;
+  const { productName, image, price, description } = req.body;
 
   try {
     const newProduct = await Product.create({
       productName,
-      image: req.file,
+      image,
       price,
       description,
       owner: req.user.id
