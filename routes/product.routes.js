@@ -3,20 +3,21 @@ import uploadCloud from "../config/cloudinary.config.js";
 import Product from "../models/Product.model.js";
 import User from "../models/User.model.js";
 
+
 const router = Router();
 
 router.post("/product",
-uploadCloud.single("image-file"),
+uploadCloud.single("image"),
  async (req, res, next) => {
   const { productName, price, description } = req.body;
 
   try {
     const newProduct = await Product.create({
       productName,
-      image: req.file.path,
+      image: req.file,
       price,
       description,
-      owner: req.user.id,
+      owner: req.user.id
     });
     await User.findByIdAndUpdate(newProduct.owner, {
       $push: { products: newProduct._id },
