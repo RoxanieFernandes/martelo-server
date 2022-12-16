@@ -6,14 +6,14 @@ import User from "../models/User.model.js";
 const router = Router();
 
 router.post("/product",
-uploadCloud.single("image"),
+uploadCloud.single("image-file"),
  async (req, res, next) => {
-  const { productName, image, price, description } = req.body;
+  const { productName, price, description } = req.body;
 
   try {
     const newProduct = await Product.create({
       productName,
-      image,
+      image: req.file.path,
       price,
       description,
       owner: req.user.id,
@@ -67,7 +67,6 @@ router.delete("/product/:id", async (req, res, next) => {
   }
 });
 
-// ver rota que não esá funcionando!!!!!!!!!!!!!!!!!!!!!!
 router.put(
   "/product/:id/image-upload",
   uploadCloud.single("image"),
