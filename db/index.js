@@ -4,6 +4,8 @@ dotenv.config();
 
 const DB_URI = process.env.MONGO_URI 
 
+mongoose.set('strictQuery', false)
+
 const connect = async () => {
     try{
         const x = await mongoose.connect(DB_URI)

@@ -1,4 +1,5 @@
 import { Router } from "express";
+import multer from "multer";
 import uploadCloud from "../config/cloudinary.config.js";
 import Product from "../models/Product.model.js";
 import User from "../models/User.model.js";
@@ -9,6 +10,7 @@ const router = Router();
 router.post("/product",
 uploadCloud.single("image"),
  async (req, res, next) => {
+  console.log(req.file, req.body)
   const { productName, image, price, description } = req.body;
 
   try {
